@@ -53,11 +53,11 @@ const Cardsdesign = ({ exercise }: dataProps) => {
                                 <PiFireSimpleFill />
                                 {exercise.caloriesBurned}
                             </p>
-                            <p className="text-xs text-gray-500">Kcal</p>
+                            <p className="text-sm text-gray-500">Kcal</p>
                         </div>
 
 
-                        <span className="font-semibold text-gray-500 flex items-center"> <FaRegStar /> {exercise.rating}/ 5.0</span>
+                        <span className="font-semibold text-gray-500 flex items-center"> <FaRegStar /> {exercise.rating}</span>
                     </div>
                 </div>
             </div>

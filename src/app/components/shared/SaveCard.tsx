@@ -1,17 +1,26 @@
 import { Icards } from '@/app/type';
+import { ExerciseContext } from '@/context/ExerciseContext';
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
+import React, { useContext } from 'react';
 import { FaRegStar } from 'react-icons/fa';
 import { MdOutlineWatchLater } from 'react-icons/md';
 import { PiFireSimpleFill } from 'react-icons/pi';
+import { RxCross1 } from 'react-icons/rx';
 
 interface Ipropsave {
     save: Icards
 }
 
 const SaveCard = ({ save }: Ipropsave) => {
+
+    const { setSaved } = useContext(ExerciseContext)
+
+    const removeExercise = () => {
+        setSaved(items => items.filter(item => item.id !== save.id))
+    }
     return (
-        // bleh
+
 
 
         <div key={save.id} className='flex justify-between items-center border-2 border-gray-900 rounded-xl mb-4 bg-[#232732]'>
@@ -29,8 +38,19 @@ const SaveCard = ({ save }: Ipropsave) => {
                     </ul>
                 </div>
             </div>
-            <div>
-                <button className='btn rounded-2xl mr-2'>View Details</button>
+            <div className='flex items-center'>
+                <Link href={`/excercise/${save.id}`}
+                    className='btn rounded-2xl mr-2'>
+                        View Details
+                </Link>
+
+                <button
+                    type="button"
+                    onClick={removeExercise}
+                    className='cursor-pointer px-4'
+                >
+                    <RxCross1 />
+                </button>
             </div>
         </div>
 

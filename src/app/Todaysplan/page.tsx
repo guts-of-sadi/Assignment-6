@@ -4,8 +4,10 @@ import React, { useContext, useState } from 'react';
 import { Icards } from '../type';
 import PlanCard from '../components/shared/PlanCard';
 import SaveCard from '../components/shared/SaveCard';
+import Link from 'next/link';
 
 const TodaysPlan = () => {
+
 
 
     const { addTodayex, saved } = useContext(ExerciseContext)
@@ -60,11 +62,29 @@ const TodaysPlan = () => {
                 />
                 <div className="tab-content bg-black border-base-300 p-6">
                     {
-                        addTodayex.map((Todayex: Icards) => {
-                            return (
-                                <PlanCard key={Todayex.id} Todayex={Todayex} />
+                        addTodayex.length === 0 ? (
+                            <div className="py-14 text-center">
+                                <h2 className="text-2xl font-bold">NOTHING HERE YET</h2>
+                                <p className="mt-2 text-gray-400">
+                                    Browse the library and add a lift to get today moving.
+                                </p>
+                                <Link href='/'>
+                                    <button
+                                        className='btn rounded-2xl bg-[#C2F10D] text-black'>
+                                        Go to workouts
+                                    </button>
+                                </Link>
+                            </div>
+                        ) :
+
+
+                            (
+                                addTodayex.map((Todayex: Icards) => {
+                                    return (
+                                        <PlanCard key={Todayex.id} Todayex={Todayex} />
+                                    )
+                                })
                             )
-                        })
                     }
 
                 </div>
@@ -75,15 +95,32 @@ const TodaysPlan = () => {
                     onChange={() => setActiveTab('saved')}
                 />
                 <div className="tab-content bg-black border-base-300 p-6">
+
                     {
-                        saved.map((save: Icards) => {
-                            return (
-                                <SaveCard key={save.id} save={save} />
+                        saved.length === 0 ? (
+                            <div className="py-14 text-center">
+                                <h2 className="text-2xl font-bold">NOTHING HERE YET</h2>
+                                <p className="mt-2 text-gray-400">
+                                    Browse the library and add a lift to get today moving.
+                                </p>
+                                <Link href='/'>
+                                    <button
+                                        className='btn rounded-2xl bg-[#C2F10D] text-black'>
+                                        Go to workouts
+                                    </button>
+                                </Link>
+                            </div>
+                        ) :
+                            (
+                                saved.map((save: Icards) => {
+                                    return (
+                                        <SaveCard key={save.id} save={save} />
+                                    )
+                                })
                             )
-
-
-                        })
                     }
+
+
 
                 </div>
             </div>
