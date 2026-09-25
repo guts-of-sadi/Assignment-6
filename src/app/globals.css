@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-body{
+html,
+body {
     background-color: black;
+    overflow-x: hidden;
+    max-width: 100vw;
 }

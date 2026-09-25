@@ -8,6 +8,7 @@ import { MdOutlineWatchLater } from 'react-icons/md';
 import { PiFireSimpleFill } from 'react-icons/pi';
 import { RxCross1 } from 'react-icons/rx';
 import { ExerciseContext } from '@/context/ExerciseContext';
+import { TiTick } from 'react-icons/ti';
 
 interface Ipropsinterface {
     Todayex: Icards;
@@ -28,7 +29,7 @@ const PlanCard = ({ Todayex }: Ipropsinterface) => {
         <div>
           
 
-            <div key={Todayex.id} className='flex justify-between items-center border-2 border-gray-900 rounded-xl mb-4 bg-[#232732]'>
+            <div key={Todayex.id} className=' grid grid-cols-1  lg:flex justify-between items-center border-2 border-gray-900 rounded-xl mb-4 bg-[#232732]'>
                 <div className='flex items-center gap-5'>
                     <div>
                         <Image src={Todayex.image} alt='image' width={150} height={80} className='rounded-xl'></Image>
@@ -45,21 +46,22 @@ const PlanCard = ({ Todayex }: Ipropsinterface) => {
                 </div>
                 <div className='flex items-center'>
                     <Link href={`/excercise/${Todayex.id}`}>
-                        <button className='btn rounded-2xl mr-2'>View Details</button>
+                        <button className='btn rounded-3xl mt-4 mb-2 ml-8 lg:ml-2 mr-2 px-5'>View Details</button>
                     </Link>
 
 
                     <button
                         onClick={() => setDone(true)}
                         disabled={done}
-                        className='btn rounded-2xl mr-2'>
+                        className='btn rounded-3xl mt-4 mb-2 ml-8 lg:ml-2 mr-2 bg-[#CCFF00] text-black'><TiTick />
+
                         {done ? 'Done' : 'Mark As Done'}
                     </button>
 
                     <button
                         type="button"
                         onClick={removeExercise}
-                        className='cursor-pointer px-4'
+                        className='cursor-pointer px-4 mt-4 mb-2'
                     >
                         <RxCross1 />
                     </button>

@@ -12,12 +12,33 @@ const TodaysPlan = () => {
 
     const { addTodayex, saved } = useContext(ExerciseContext)
 
+    const [sortby, setSortby] = useState<"rating" | "duration" | "calories">("rating")
+
+    const sortedPlan = (exercises: Icards[]) => {
+        const sortTplan =    [...exercises]
+
+    if (sortby === "rating") {
+      sortTplan.sort((a, b) => b.rating - a.rating);
+    } else if (sortby === "duration") {
+      sortTplan.sort((a, b) => b.duration - a.duration);
+    } else if (sortby === "calories") {
+      sortTplan.sort((a, b) => b.duration - a.duration);
+    }
+
+     return sortTplan;
+ };
+
+    const sortedTodaysplan = sortedPlan(addTodayex);
+    const sortedSaved = sortedPlan(saved);
+
+
     const [activeTab, setActiveTab] = useState<'today' | 'saved'>('today');
 
     const displayedExercises =
         activeTab === 'today' ? addTodayex : saved;
 
     const totalExercise = displayedExercises.length;
+
 
     const totalMinutes = displayedExercises.reduce(
         (total, exercise) => total + exercise.duration,
@@ -32,37 +53,45 @@ const TodaysPlan = () => {
     return (
 
         <div className='container mx-auto'>
-            <div className='mb-4'>
+
+
+            <div className='mb-4 text-center lg:text-left'>
                 <h1 className='font-bold text-[50px]'>My Plan</h1>
                 <p className='text-[20px] text-[#8A92A0]'>Cap of five lifts for today. Finish them, then load more.</p>
-                <div className='flex justify-between items-center border border-gray-900 rounded-xl p-4 mt-5'>
+                <div className='flex justify-between items-center border border-gray-900 rounded-xl  mt-5 p-10'>
                     <div>
                         <p>Excercises</p>
-                        <p className='text-center'>{totalExercise}</p>
+                        <p className='font-bold text-center text-[45px] text-[#CCFF00]'>{totalExercise}</p>
                     </div>
                     <div className="divider divider-horizontal"></div>
                     <div>
                         <p>Minutes</p>
-                        <p>{totalMinutes}</p>
+                        <p className='font-bold text-center text-[45px]' >{totalMinutes}</p>
                     </div>
                     <div className="divider divider-horizontal"></div>
                     <div>
                         <p>Calories</p>
-                        <p>{totalCalories}</p>
+                        <p className='font-bold text-center text-[45px]'>{totalCalories}</p>
                     </div>
                 </div>
             </div>
 
 
-            {/* name of each tab group should be unique */}
-            <div className="tabs tabs-lift">
+
+
+
+
+            <div className="tabs tabs-lift mb-5 pb-5">
+
+
+
                 <input type="radio" name="my_tabs_3" className="tab font-bold" aria-label="Today's Plan"
                     checked={activeTab === 'today'}
                     onChange={() => setActiveTab('today')}
                 />
                 <div className="tab-content bg-black border-base-300 p-6">
                     {
-                        addTodayex.length === 0 ? (
+                        sortedTodaysplan.length === 0 ? (
                             <div className="py-14 text-center">
                                 <h2 className="text-2xl font-bold">NOTHING HERE YET</h2>
                                 <p className="mt-2 text-gray-400">
@@ -79,7 +108,7 @@ const TodaysPlan = () => {
 
 
                             (
-                                addTodayex.map((Todayex: Icards) => {
+                                sortedTodaysplan.map((Todayex: Icards) => {
                                     return (
                                         <PlanCard key={Todayex.id} Todayex={Todayex} />
                                     )
@@ -97,7 +126,7 @@ const TodaysPlan = () => {
                 <div className="tab-content bg-black border-base-300 p-6">
 
                     {
-                        saved.length === 0 ? (
+                        sortedSaved.length === 0 ? (
                             <div className="py-14 text-center">
                                 <h2 className="text-2xl font-bold">NOTHING HERE YET</h2>
                                 <p className="mt-2 text-gray-400">
@@ -112,7 +141,7 @@ const TodaysPlan = () => {
                             </div>
                         ) :
                             (
-                                saved.map((save: Icards) => {
+                                sortedSaved.map((save: Icards) => {
                                     return (
                                         <SaveCard key={save.id} save={save} />
                                     )
@@ -123,7 +152,23 @@ const TodaysPlan = () => {
 
 
                 </div>
+
+                <div className='ml-20 flex  items-end lg:items-center  gap-4'>
+                    <span className='text-[#8A92A0] text-[18px] text-center'>Sort</span>
+                    <select
+                        value={sortby}
+                        onChange={(e) => setSortby(e.target.value as "rating" | "duration" | "calories")}
+                        className="select select-neutral  rounded-xl">
+                        <option disabled={true}>Sort by</option>
+                        <option value={"duration"}>Duration</option>
+                        <option value={"calories"}>Calories</option>
+                        <option value={"rating"}>Rating</option>
+                    </select>
+                </div>
+
+
             </div>
+
 
         </div>
     );

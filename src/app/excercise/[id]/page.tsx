@@ -17,21 +17,37 @@ const getSingleexercise = async (id: string) => {
     return data;
 }
 
+
+
 const ExcerciseDetails = async ({ params }: IExcerciseDetails) => {
     const { id } = await params
     const exercise: Icards = await getSingleexercise(id)
+    if (!exercise || !exercise.name) {
+        return <div className="container mx-auto p-8 text-white">Exercise not found.</div>;
+    }
 
     return (
-        <div className="container mx-auto grid grid-cols-2">
-            <div className="relative h-200 w-130">
-                <Image src={exercise.image} alt={exercise.name} fill sizes="800px" loading="eager" className="object-cover"></Image>
+        <div className="container mx-auto grid grid-cols-1  lg:grid-cols-2 mt-8">
+            <div className="relative h-80 lg:h-200 w-full lg:w-[520px]">
+                <Image src={exercise.image} alt={exercise.name} fill sizes="800px" loading="eager" className="object-cover rounded-2xl"></Image>
             </div>
+
+
             <div>
-                <h1>{exercise.name}</h1>
-                <p>{exercise.description}</p>
-                <p>{exercise.muscleGroups}</p>
+                <h1 className="font-bold text-[36px] mb-4">{exercise.name}</h1>
+                <p className="text-[#9CA3AF] mb-4">{exercise.description}</p>
 
-
+                <div className="mb-4 flex flex-wrap gap-2">
+                    {
+                        exercise.muscleGroups.map((muscle) => (
+                            <span
+                                key={muscle}
+                                className="rounded-full bg-[#baff00] px-4 py-1 text-xs font-bold uppercase tracking-wide text-black"
+                            >
+                                {muscle}
+                            </span>
+                        ))}
+                </div>
 
                 <div className="overflow-hidden rounded-3xl border border-gray-700 bg-[#151922]">
 
@@ -111,8 +127,22 @@ const ExcerciseDetails = async ({ params }: IExcerciseDetails) => {
                         </span>
                     </div>
                 </div>
-                <TodaysPlanbtn exercise={exercise}/>
-                <Savedbtn exercise={exercise}/>
+
+                <div className="mt-6 p-6">
+                    <h3 className="mb-4 text-lg font-bold text-white uppercase">Instructions</h3>
+                    <ol className="space-y-3">
+                        {
+                            exercise.instructions.map((step, index) => (
+                                <li key={index} className="flex gap-3 text-sm text-gray-400">
+                                    <span className="shrink-0">{index + 1}.</span>
+                                    <span>{step}</span>
+                                </li>
+                            ))
+                        }
+                    </ol>
+                </div>
+                <TodaysPlanbtn exercise={exercise} />
+                <Savedbtn exercise={exercise} />
             </div>
         </div>
     );
