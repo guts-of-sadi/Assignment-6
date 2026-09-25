@@ -1,37 +1,93 @@
 'use client'
 import { ExerciseContext } from '@/context/ExerciseContext';
 import React, { useContext, useState } from 'react';
+import { Icards } from '../type';
+import PlanCard from '../components/shared/PlanCard';
+import SaveCard from '../components/shared/SaveCard';
 
 const TodaysPlan = () => {
- const [active, setActive] = useState("saved");
 
-    const { addTodayex } = useContext(ExerciseContext)
+
+    const { addTodayex, saved } = useContext(ExerciseContext)
+
+    const [activeTab, setActiveTab] = useState<'today' | 'saved'>('today');
+
+    const displayedExercises =
+        activeTab === 'today' ? addTodayex : saved;
+
+    const totalExercise = displayedExercises.length;
+
+    const totalMinutes = displayedExercises.reduce(
+        (total, exercise) => total + exercise.duration,
+        0
+    );
+
+    const totalCalories = displayedExercises.reduce(
+        (total, exercise) => total + exercise.caloriesBurned,
+        0
+    );
+
     return (
-        <div>
-            <div className="flex bg-base-200 p-1 rounded-2xl w-fit">
-                <button
-                    onClick={() => setActive("plan")}
-                    className={`px-6 py-3 rounded-xl ${active === "plan"
-                            ? "bg-base-100"
-                            : "text-gray-400"
-                        }`}
-                >
-                    Today's Plan
-                </button>
 
-                <button
-                    onClick={() => setActive("saved")}
-                    className={`px-6 py-3 rounded-xl ${active === "saved"
-                            ? "bg-base-100"
-                            : "text-gray-400"
-                        }`}
-                >
-                    Saved
-                </button>
+        <div className='container mx-auto'>
+            <div className='mb-4'>
+                <h1 className='font-bold text-[50px]'>My Plan</h1>
+                <p className='text-[20px] text-[#8A92A0]'>Cap of five lifts for today. Finish them, then load more.</p>
+                <div className='flex justify-between items-center border border-gray-900 rounded-xl p-4 mt-5'>
+                    <div>
+                        <p>Excercises</p>
+                        <p className='text-center'>{totalExercise}</p>
+                    </div>
+                    <div className="divider divider-horizontal"></div>
+                    <div>
+                        <p>Minutes</p>
+                        <p>{totalMinutes}</p>
+                    </div>
+                    <div className="divider divider-horizontal"></div>
+                    <div>
+                        <p>Calories</p>
+                        <p>{totalCalories}</p>
+                    </div>
+                </div>
             </div>
 
-            {active === "plan" && <div>Plan content</div>}
-            {active === "saved" && <div>Saved content</div>}
+
+            {/* name of each tab group should be unique */}
+            <div className="tabs tabs-lift">
+                <input type="radio" name="my_tabs_3" className="tab font-bold" aria-label="Today's Plan"
+                    checked={activeTab === 'today'}
+                    onChange={() => setActiveTab('today')}
+                />
+                <div className="tab-content bg-black border-base-300 p-6">
+                    {
+                        addTodayex.map((Todayex: Icards) => {
+                            return (
+                                <PlanCard key={Todayex.id} Todayex={Todayex} />
+                            )
+                        })
+                    }
+
+                </div>
+
+
+                <input type="radio" name="my_tabs_3" className="tab font-bold" aria-label="Saved Excersice"
+                    checked={activeTab === 'saved'}
+                    onChange={() => setActiveTab('saved')}
+                />
+                <div className="tab-content bg-black border-base-300 p-6">
+                    {
+                        saved.map((save: Icards) => {
+                            return (
+                                <SaveCard key={save.id} save={save} />
+                            )
+
+
+                        })
+                    }
+
+                </div>
+            </div>
+
         </div>
     );
 };

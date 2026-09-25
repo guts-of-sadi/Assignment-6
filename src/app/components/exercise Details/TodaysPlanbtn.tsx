@@ -13,7 +13,7 @@ const TodaysPlanbtn = ({ exercise }: Iexercise) => {
    
 
     const handleplan = () => {
-       
+        console.log("Today's plan",exercise);
         setTodayex([...addTodayex,exercise])
     }
 

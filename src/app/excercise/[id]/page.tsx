@@ -1,3 +1,4 @@
+import Savedbtn from "@/app/components/exercise Details/saved";
 import TodaysPlanbtn from "@/app/components/exercise Details/TodaysPlanbtn";
 import { Icards } from "@/app/type";
 import Image from "next/image";
@@ -111,7 +112,7 @@ const ExcerciseDetails = async ({ params }: IExcerciseDetails) => {
                     </div>
                 </div>
                 <TodaysPlanbtn exercise={exercise}/>
-                <button className="btn">Save for later</button>
+                <Savedbtn exercise={exercise}/>
             </div>
         </div>
     );

@@ -1,0 +1,41 @@
+import { Icards } from '@/app/type';
+import Image from 'next/image';
+import React from 'react';
+import { FaRegStar } from 'react-icons/fa';
+import { MdOutlineWatchLater } from 'react-icons/md';
+import { PiFireSimpleFill } from 'react-icons/pi';
+
+interface Ipropsave {
+    save: Icards
+}
+
+const SaveCard = ({ save }: Ipropsave) => {
+    return (
+        // bleh
+
+
+        <div key={save.id} className='flex justify-between items-center border-2 border-gray-900 rounded-xl mb-4 bg-[#232732]'>
+            <div className='flex items-center gap-5'>
+                <div>
+                    <Image src={save.image} alt='image' width={150} height={80} className='rounded-xl'></Image>
+                </div>
+                <div>
+                    <h2 className='font-bold text-[28px]'>{save.name}</h2>
+                    <p className='text-[#8A92A0] mt-1'>{save.equipment}</p>
+                    <ul className='flex gap-3 text-[#D1D5DB] mt-1'>
+                        <li className='flex items-center'><MdOutlineWatchLater />{save.duration}min</li>
+                        <li className='flex items-center'><PiFireSimpleFill />{save.caloriesBurned}Kcal</li>
+                        <li className='flex items-center'><FaRegStar />{save.rating}</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <button className='btn rounded-2xl mr-2'>View Details</button>
+            </div>
+        </div>
+
+        //   bleh
+    );
+};
+
+export default SaveCard;

@@ -1,8 +1,17 @@
 'use client'
 
+import { Icards } from '@/app/type';
 import React, { createContext, ReactNode, useState } from 'react';
 
-export const ExerciseContext = createContext({})
+
+interface ExerciseInterface {
+  addTodayex: Icards[];
+  setTodayex: React.Dispatch<React.SetStateAction<Icards[]>>;
+  saved: Icards[];
+  setSaved: React.Dispatch<React.SetStateAction<Icards[]>>;
+}
+
+export const ExerciseContext = createContext<ExerciseInterface>({} as ExerciseInterface)
 
 const ExerciseProvider = ({ children }: { children: ReactNode }) => {
     const [addTodayex, setTodayex] = useState([])

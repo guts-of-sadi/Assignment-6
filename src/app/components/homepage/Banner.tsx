@@ -9,7 +9,7 @@ const Banner = () => {
                     EVERY SET.</h1>
                 <p className="text-[#9CA3AF] mb-5">FitLog is a dark, no-nonsense gym companion: pick a lift, lock it<br/>
                     into today's plan, and watch the week's work add up.</p>
-                    <button className="p-3 rounded-xl bg-[#C2F800] text-black">BROWSE WORKOUTS</button>
+                    <button className="p-3 rounded-xl bg-[#C2F800] text-black cursor-pointer">BROWSE WORKOUTS</button>
             </div>
             <div>
                 <Image src={banner} alt="Banner image"></Image>
