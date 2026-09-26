@@ -14,8 +14,8 @@ interface ExerciseInterface {
 export const ExerciseContext = createContext<ExerciseInterface>({} as ExerciseInterface)
 
 const ExerciseProvider = ({ children }: { children: ReactNode }) => {
-    const [addTodayex, setTodayex] = useState([])
-    const [saved, setSaved] = useState([])
+    const [addTodayex, setTodayex] = useState<Icards[]>([])
+    const [saved, setSaved] = useState<Icards[]>([])
 
     const sharedData = {
         addTodayex, setTodayex, saved, setSaved
