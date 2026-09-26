@@ -34,7 +34,7 @@ const ExcerciseDetails = async ({ params }: IExcerciseDetails) => {
 
 
             <div>
-                <h1 className="font-bold text-[36px] mb-4">{exercise.name}</h1>
+                <h1 className="font-bold text-white text-[36px] mb-4">{exercise.name}</h1>
                 <p className="text-[#9CA3AF] mb-4">{exercise.description}</p>
 
                 <div className="mb-4 flex flex-wrap gap-2">

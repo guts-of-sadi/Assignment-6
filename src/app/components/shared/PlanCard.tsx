@@ -54,15 +54,13 @@ const PlanCard = ({ Todayex }: Ipropsinterface) => {
     return (
 
         <div>
-
-
             <div key={Todayex.id} className=' grid grid-cols-1  lg:flex justify-between items-center border-2 border-gray-800 rounded-xl mb-4 bg-[#15171D]'>
                 <div className='flex items-center gap-5'>
                     <div>
                         <Image src={Todayex.image} alt='image' width={150} height={80} className='rounded-xl'></Image>
                     </div>
                     <div>
-                        <h2 className='font-bold text-[28px]'>{Todayex.name}</h2>
+                        <h2 className='font-bold text-white text-[28px]'>{Todayex.name}</h2>
                         <p className='text-[#8A92A0] mt-1'>{Todayex.equipment}</p>
                         <ul className='flex gap-3 text-[#D1D5DB] mt-1'>
                             <li className='flex items-center'><MdOutlineWatchLater />{Todayex.duration}min</li>

@@ -56,22 +56,22 @@ const TodaysPlan = () => {
 
 
             <div className='mb-4 text-center lg:text-left'>
-                <h1 className='font-bold text-[50px]'>My Plan</h1>
+                <h1 className='font-bold text-white text-[50px]'>My Plan</h1>
                 <p className='text-[20px] text-[#8A92A0]'>Cap of five lifts for today. Finish them, then load more.</p>
                 <div className='flex justify-between items-center border border-gray-900 rounded-xl  mt-5 p-10'>
                     <div>
-                        <p>Excercises</p>
+                        <p className='text-white'>Excercises</p>
                         <p className='font-bold text-center text-[45px] text-[#CCFF00]'>{totalExercise}</p>
                     </div>
                     <div className="divider divider-horizontal"></div>
                     <div>
-                        <p>Minutes</p>
-                        <p className='font-bold text-center text-[45px]' >{totalMinutes}</p>
+                        <p className='text-white'>Minutes</p>
+                        <p className='font-bold text-white text-center text-[45px]' >{totalMinutes}</p>
                     </div>
                     <div className="divider divider-horizontal"></div>
                     <div>
-                        <p>Calories</p>
-                        <p className='font-bold text-center text-[45px]'>{totalCalories}</p>
+                        <p className='text-white'>Calories</p>
+                        <p className='font-bold text-white text-center text-[45px]'>{totalCalories}</p>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@ const TodaysPlan = () => {
 
 
 
-                <input type="radio" name="my_tabs_3" className="tab font-bold" aria-label="Today's Plan"
+                <input type="radio" name="my_tabs_3" className="tab text-white font-bold" aria-label="Today's Plan"
                     checked={activeTab === 'today'}
                     onChange={() => setActiveTab('today')}
                 />
