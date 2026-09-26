@@ -9,6 +9,7 @@ import { PiFireSimpleFill } from 'react-icons/pi';
 import { RxCross1 } from 'react-icons/rx';
 import { ExerciseContext } from '@/context/ExerciseContext';
 import { TiTick } from 'react-icons/ti';
+import { toast } from 'react-toastify';
 
 interface Ipropsinterface {
     Todayex: Icards;
@@ -16,20 +17,46 @@ interface Ipropsinterface {
 
 
 const PlanCard = ({ Todayex }: Ipropsinterface) => {
+
     const { setTodayex } = useContext(ExerciseContext);
+
     const [done, setDone] = useState(false)
+    
     const removeExercise = () => {
         setTodayex(items => items.filter(item => item.id !== Todayex.id))
+        toast.error(`${Todayex.name} is removed!`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
     }
 
-   
+    const markAsDone = () => {
+        setDone(true);
+        toast.success(`${Todayex.name} marked as done!`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+
 
     return (
 
         <div>
-          
 
-            <div key={Todayex.id} className=' grid grid-cols-1  lg:flex justify-between items-center border-2 border-gray-900 rounded-xl mb-4 bg-[#232732]'>
+
+            <div key={Todayex.id} className=' grid grid-cols-1  lg:flex justify-between items-center border-2 border-gray-800 rounded-xl mb-4 bg-[#15171D]'>
                 <div className='flex items-center gap-5'>
                     <div>
                         <Image src={Todayex.image} alt='image' width={150} height={80} className='rounded-xl'></Image>
@@ -51,7 +78,7 @@ const PlanCard = ({ Todayex }: Ipropsinterface) => {
 
 
                     <button
-                        onClick={() => setDone(true)}
+                        onClick={markAsDone}
                         disabled={done}
                         className='btn rounded-3xl mt-4 mb-2 ml-8 lg:ml-2 mr-2 bg-[#CCFF00] text-black'><TiTick />
 

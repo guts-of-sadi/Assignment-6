@@ -11,7 +11,7 @@ const ExerciseCards = async () => {
     const data = await getAllexercise();
     return (
       
-        <div className="container mx-auto">
+        <div id="library" className="container mx-auto">
             <div className="my-10">
                 <h1 className="font-bold text-[40px] text-white">THE LIBRARY</h1>
                 <p className="text-[#9CA3AF]">Twelve lifts covering every major muscle group.</p>

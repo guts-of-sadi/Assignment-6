@@ -37,7 +37,7 @@ const Navbar = () => {
                     <Link href='/Todaysplan' className='flex items-center gap-2'>
                         <span className='text-sm font-medium'>Saved</span>
                         <span className='border border-gray-200 rounded-full w-5 h-5  text-gray-300 font-bold flex items-center justify-center'>{saved.length}</span>
-                        
+
                     </Link>
                 </div>
             </div>

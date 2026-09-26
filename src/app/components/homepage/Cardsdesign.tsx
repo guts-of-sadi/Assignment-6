@@ -12,7 +12,7 @@ export interface dataProps {
 const Cardsdesign = ({ exercise }: dataProps) => {
     return (
         <Link href={`/excercise/${exercise.id}`}>
-            <div className='rounded-xl h-auto transition duration-300 hover:scale-102 bg-[#20242E]'>
+            <div className='rounded-xl h-auto transition duration-300 hover:scale-102 bg-[#15171D]'>
                 <div className='relative h-70 w-full overflow-hidden rounded-t-xl'>
                     <Image src={exercise.image} alt='Exercise image' fill sizes='800px' className="object-cover"></Image>
                 </div>
@@ -55,8 +55,6 @@ const Cardsdesign = ({ exercise }: dataProps) => {
                             </p>
                             <p className="text-sm text-gray-500">Kcal</p>
                         </div>
-
-
                         <span className="font-semibold text-gray-500 flex items-center"> <FaRegStar /> {exercise.rating}</span>
                     </div>
                 </div>

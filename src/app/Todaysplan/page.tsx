@@ -156,7 +156,7 @@ const TodaysPlan = () => {
                 <div className='ml-20 flex  items-end lg:items-center  gap-4'>
                     <span className='text-[#8A92A0] text-[18px] text-center'>Sort</span>
                     <select
-                        value={sortby}
+                        defaultValue={"duration"}
                         onChange={(e) => setSortby(e.target.value as "rating" | "duration" | "calories")}
                         className="select select-neutral  rounded-xl">
                         <option disabled={true}>Sort by</option>

@@ -7,6 +7,7 @@ import { FaRegStar } from 'react-icons/fa';
 import { MdOutlineWatchLater } from 'react-icons/md';
 import { PiFireSimpleFill } from 'react-icons/pi';
 import { RxCross1 } from 'react-icons/rx';
+import { toast } from 'react-toastify';
 
 interface Ipropsave {
     save: Icards
@@ -18,12 +19,23 @@ const SaveCard = ({ save }: Ipropsave) => {
 
     const removeExercise = () => {
         setSaved(items => items.filter(item => item.id !== save.id))
+        toast.error(`${save.name} is removed!`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+
     }
     return (
 
 
 
-        <div key={save.id} className='grid grid-cols-1  lg:flex justify-between items-center border-2 border-gray-900 rounded-xl mb-4 bg-[#232732]'>
+        <div key={save.id} className='grid grid-cols-1  lg:flex justify-between items-center border-2 border-gray-800 rounded-xl mb-4 bg-[#15171D]'>
             <div className='flex items-center gap-5'>
                 <div>
                     <Image src={save.image} alt='image' width={150} height={80} className='rounded-xl'></Image>
@@ -41,7 +53,7 @@ const SaveCard = ({ save }: Ipropsave) => {
             <div className='flex items-center'>
                 <Link href={`/excercise/${save.id}`}
                     className='btn rounded-3xl mt-4 mb-2 ml-8 lg:ml-2 mr-2 px-5'>
-                        View Details
+                    View Details
                 </Link>
 
                 <button

@@ -27,9 +27,9 @@ const ExcerciseDetails = async ({ params }: IExcerciseDetails) => {
     }
 
     return (
-        <div className="container mx-auto grid grid-cols-1  lg:grid-cols-2 mt-8">
-            <div className="relative h-80 lg:h-200 w-full lg:w-[520px]">
-                <Image src={exercise.image} alt={exercise.name} fill sizes="800px" loading="eager" className="object-cover rounded-2xl"></Image>
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-1  lg:grid-cols-2 mt-8 gap-10 lg:gap-12">
+            <div className="relative h-80 lg:h-auto w-full lg:w-auto">
+                <Image src={exercise.image} alt={exercise.name} fill  sizes="(max-width: 1024px) 100vw, 800px" priority className="object-cover rounded-2xl"></Image>
             </div>
 
 
