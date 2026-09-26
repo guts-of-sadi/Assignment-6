@@ -85,7 +85,7 @@ const TodaysPlan = () => {
 
 
 
-                <input type="radio" name="my_tabs_3" className="tab text-white font-bold" aria-label="Today's Plan"
+                <input type="radio" name="my_tabs_3" className="tab text-white bg-gray-600 font-bold" aria-label="Today's Plan"
                     checked={activeTab === 'today'}
                     onChange={() => setActiveTab('today')}
                 />
