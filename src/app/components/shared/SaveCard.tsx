@@ -41,7 +41,7 @@ const SaveCard = ({ save }: Ipropsave) => {
                     <Image src={save.image} alt='image' width={150} height={80} className='rounded-xl'></Image>
                 </div>
                 <div>
-                    <h2 className='font-bold text-[28px]'>{save.name}</h2>
+                    <h2 className='font-bold  text-white text-[28px]'>{save.name}</h2>
                     <p className='text-[#8A92A0] mt-1'>{save.equipment}</p>
                     <ul className='flex gap-3 text-[#D1D5DB] mt-1'>
                         <li className='flex items-center'><MdOutlineWatchLater />{save.duration}min</li>

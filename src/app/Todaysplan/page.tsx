@@ -128,7 +128,7 @@ const TodaysPlan = () => {
                     {
                         sortedSaved.length === 0 ? (
                             <div className="py-14 text-center">
-                                <h2 className="text-2xl font-bold">NOTHING HERE YET</h2>
+                                <h2 className="text-2xl text-white font-bold">NOTHING HERE YET</h2>
                                 <p className="mt-2 text-gray-400">
                                     Browse the library and add a lift to get today moving.
                                 </p>
